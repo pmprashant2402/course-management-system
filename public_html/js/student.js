@@ -5,9 +5,9 @@ $(document).ready(function(){
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"http://localhost/sage/source/action.php",
+			url:"http://localhost/sage/source/index.php",
 			type:"POST",
-			data:{action:'listStudent'},
+			data:{action:'list',api:'StudentClass'},
 			dataType:"json"
 		},
 		"columnDefs":[
@@ -21,7 +21,7 @@ $(document).ready(function(){
 	$('#addStudent').click(function(){
 		$('#studentModal').modal('show');
 		$('.modal-title').html("<i class='fa fa-plus'></i> Add Student");
-		$('#action').val('addStudent');
+		$('#action').val('create');
 		  $("form[name='registration']").validate({
 		    rules: {
 		      first_name: {
@@ -73,11 +73,11 @@ $(document).ready(function(){
 		    },
 		    submitHandler: function(form) {
 		      var data = $("form[name='registration']").serializeArray();
-		      url: "http://localhost/sage/source/action.php"
-			  data.push({action: 'addStudent'});
+			  data.push({'api': 'StudentClass'});
+			  console.log(data);
 				  $.ajax({
 				    type: "POST",
-				    url: "http://localhost/sage/source/action.php",
+				    url: "http://localhost/sage/source/index.php",
 				    data: data,
 				    success: function(response){
 				        $('#registration')[0].reset();

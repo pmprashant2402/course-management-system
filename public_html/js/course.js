@@ -1,5 +1,5 @@
 $('#courseList').DataTable().ajax.reload();
-$(document).ready(function(){	
+/*$(document).ready(function(){	
 	var courseData = $('#courseList').DataTable({
 		"lengthChange": false,
 		"processing":true,
@@ -18,7 +18,7 @@ $(document).ready(function(){
 			},
 		],
 		"pageLength": 10
-	});	
+	});	*/
 
 
 	

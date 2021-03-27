@@ -1,4 +1,5 @@
 <?php
+require('http://localhost/sage/source/DbConfig.php');
 include('student/StudentClass.php');
 $student = new StudentClass();
 

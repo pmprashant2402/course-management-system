@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ //include 'http://localhost/sage/source/DbConfig.php';
+ //include 'http://localhost/sage/source/config.php';
+
 /**
  * 
  */
@@ -8,10 +12,14 @@
 	Project : Course Management system
 
 */
-$configs = include('http://localhost/sage/source/config.php');
-require( $configs['source_base_url'].'DbConfig.php');
-require('interface/StudentInterface.php');
-class StudentClass implements StudentInterface
+/*$configs = include('http://localhost/sage/source/config.php');
+require( $configs['source_base_url'].'DbConfig.php');*/
+//require('interface/StudentInterface.php');
+require("../DatabaseConfig.php");
+/*var_dump(file_exists("http://localhost/sage/source/DatabaseConfig.php"));
+var_dump(file_exists("../DatabaseConfig.php"));*/
+
+class StudentClass extends DatabaseConfig
 {
 	
 	private $dbConnect = null;
@@ -20,8 +28,9 @@ class StudentClass implements StudentInterface
 	private $studentDetailsTable = 'students_details';
 	
     public function __construct(){
-    	$this->dbConfig = new DbConfig();
-    	$this->dbConnect = $this->dbConfig->connect();
+    	//$this->dbConfig = new DbConfig();
+    	
+    	//$this->dbConnect = $db->connect();
     }
 
 	public function list() {

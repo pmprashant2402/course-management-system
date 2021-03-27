@@ -1,6 +1,6 @@
 <?php
 
-class DbConfig {
+class DatabaseConfig {
 
 protected $host;
 protected $username;

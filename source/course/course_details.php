@@ -1,6 +1,6 @@
 <?php  
-
- $connect = mysqli_connect("localhost", "root", "", "sage");  
+ include '../dbconfig.php';
+ $connect = $this->connect();   
  $query ="SELECT * FROM course ORDER BY ID DESC";  
  $result = mysqli_query($connect, $query);  
  $configs = include('../config.php');
