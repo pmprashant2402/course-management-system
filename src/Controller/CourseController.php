@@ -56,7 +56,9 @@ class courseController extends Actionontroller
             echo json_encode($list);
             
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
     
@@ -74,7 +76,9 @@ class courseController extends Actionontroller
             echo json_encode($response);
 
         } catch (Exception $e) {
-            
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -87,7 +91,9 @@ class courseController extends Actionontroller
             $response = $this->courseModalObj->delete($courseId);
             echo json_encode($response);
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -100,7 +106,9 @@ class courseController extends Actionontroller
             $response = $this->courseModalObj->getcourseData($courseId);
             echo json_encode($response);
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -115,7 +123,9 @@ class courseController extends Actionontroller
             $response = $this->courseModalObj->update($postData);
             echo json_encode($response);
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 

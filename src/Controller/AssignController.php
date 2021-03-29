@@ -73,7 +73,9 @@ class AssignController extends Actionontroller
             echo json_encode($response);
 
         } catch (Exception $e) {
-            
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -86,7 +88,9 @@ class AssignController extends Actionontroller
             $response = $this->assignModalObj->delete($assignId);
             echo json_encode($response);
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -99,7 +103,9 @@ class AssignController extends Actionontroller
             $response = $this->assignModalObj->getAssignedCourse($assignId);
             echo json_encode($response);
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -114,7 +120,9 @@ class AssignController extends Actionontroller
             $response = $this->assignModalObj->update($postData);
             echo json_encode($response);
         } catch (Exception $e) {
-            echo $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
         }
     }
 
@@ -123,7 +131,9 @@ class AssignController extends Actionontroller
     		$data = $this->assignModalObj->fetchStudentCourse();
     		echo json_encode($data);
     	} catch (Exception $e) {
-    		
+    		$message =  $e->getMessage().'in file'.$e->getFile().' line number '. $e->getLine();
+            $response = array('status'=>FAILED,'message' => $message);
+            return $response;
     	}
     }
 

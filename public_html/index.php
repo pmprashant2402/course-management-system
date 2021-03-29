@@ -43,6 +43,9 @@ define('PUBLIC_DIR', 'public_html');
 define('DEFAULT_CONTROLLER', 'Default');
 define('DEFAULT_METHOD', 'index');
 define('EXT', '.php');
+define('SUCCESS', '1');
+define('FAILED', '0');
+
 $path = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], PUBLIC_DIR) + strlen(PUBLIC_DIR));
 if (ENV == 'DEVELOPMENT') {
     $path = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], PUBLIC_DIR) + strlen(PUBLIC_DIR));

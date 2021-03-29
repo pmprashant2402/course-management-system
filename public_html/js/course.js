@@ -61,7 +61,7 @@ $(document).ready(function(){
 			  data.push({action: 'addCourse'});
 				  $.ajax({
 				    type: "POST",
-				    url: "http://localhost/sage/source/CourseController.php",
+				    url: APP_BASE_URL + "/course/create",
 				    data: data,
 				    success: function(response){
 				        $('#create_course')[0].reset();
