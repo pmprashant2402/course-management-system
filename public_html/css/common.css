@@ -1,5 +1,5 @@
 .error {
-	color: #a94442;
+	color: red;
 }
 
 .alert-box {
@@ -29,3 +29,4 @@
     border-color: #faebcc;
     display: none;
 }
+

@@ -21,7 +21,7 @@
             </div>   
             <div class="form-group">
               <label for="date" class="control-label">Date of birth</label>              
-              <input type="date" class="form-control"  id="date_of_birth" name="date_of_birth" placeholder="date of birth" required>           
+              <input type="date" placeholder="yyyy-mm-dd" class="form-control"  id="date_of_birth" name="date_of_birth" required>           
             </div>
             <div class="form-group">
               <label for="lastname" class="control-label">Contact Number</label>             

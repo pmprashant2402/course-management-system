@@ -5,7 +5,7 @@ $(document).ready(function(){
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"http://localhost/sage/source/action.php",
+			url: APP_BASE_URL + "/student/list",
 			type:"POST",
 			data:{action:'listStudent'},
 			dataType:"json"
@@ -19,6 +19,7 @@ $(document).ready(function(){
 		"pageLength": 10
 	});		
 	$('#addStudent').click(function(){
+		alert();
 		$('#studentModal').modal('show');
 		$('.modal-title').html("<i class='fa fa-plus'></i> Add Student");
 		$('#action').val('addStudent');
@@ -73,11 +74,10 @@ $(document).ready(function(){
 		    },
 		    submitHandler: function(form) {
 		      var data = $("form[name='registration']").serializeArray();
-		      url: "http://localhost/sage/source/action.php"
 			  data.push({action: 'addStudent'});
 				  $.ajax({
 				    type: "POST",
-				    url: "http://localhost/sage/source/action.php",
+				    url: APP_BASE_URL + "/student/create",
 				    data: data,
 				    success: function(response){
 				        $('#registration')[0].reset();
@@ -94,11 +94,10 @@ $(document).ready(function(){
 	
 	$("#studentList").on('click', '.update', function(){
 		var studentId = $(this).attr("id");
-		var action = 'getStudent';
 		$.ajax({
-			url: APP_BASE_URL + "e/action.php",
+			url: APP_BASE_URL + "/student/getStudentData",
 			method:"POST",
-			data:{studentId:studentId, action:action},
+			data:{studentId:studentId},
 			dataType:"json",
 			success:function(data){
 				$('#studentModal').modal('show');
@@ -128,7 +127,7 @@ $("#registration").on('click', '.update_student_records', function(){
 		 console.log(data);
 			  $.ajax({
 			    type: "POST",
-			    url: APP_BASE_URL + "e/action.php",
+			    url: APP_BASE_URL + "/student/update",
 			    data: data,
 			    success: function(response){
 			        $('#registration')[0].reset();
@@ -143,12 +142,11 @@ $("#registration").on('click', '.update_student_records', function(){
 
 	$("#studentList").on('click', '.delete', function(){
 		var studentId = $(this).attr("id");		
-		var action = "studentDelete";
 		if(confirm("Are you sure you want to delete this student?")) {
 			$.ajax({
-				url: APP_BASE_URL + "e/action.php",
+				url: APP_BASE_URL + "/student/delete",
 				method:"POST",
-				data:{studentId:studentId, action:action},
+				data:{studentId:studentId},
 				success:function(data) {					
 					studentData.ajax.reload();
 				}

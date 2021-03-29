@@ -6,7 +6,7 @@ $(document).ready(function(){
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"http://localhost/sage/source/AssignAction.php",
+			url: APP_BASE_URL + "/assign/list",
 			type:"POST",
 			data:{action:'listAssignedCourse'},
 			dataType:"json"
@@ -41,11 +41,10 @@ $(document).ready(function(){
 		    },
 		    submitHandler: function(form) {
 		      var data = $("form[name='assign_course']").serializeArray();
-		      url: "http://localhost/sage/source/AssignAction.php"
 			  data.push({action: 'assignCourse'});
 				  $.ajax({
 				    type: "POST",
-				    url: "http://localhost/sage/source/AssignAction.php",
+				    url: APP_BASE_URL + "/assign/create",
 				    data: data,
 				    success: function(response){
 				        $('#assign_course')[0].reset();
@@ -64,7 +63,7 @@ $(document).ready(function(){
 		var assignedId = $(this).attr("id");
 		var action = 'getAssignedCourse';
 		$.ajax({
-			url: APP_BASE_URL + "e/AssignAction.php",
+			url: APP_BASE_URL + "/assign/getAssignedCourse",
 			method:"POST",
 			data:{assignedId:assignedId, action:action},
 			dataType:"json",
@@ -91,7 +90,7 @@ $(document).ready(function(){
 		var action = "assignDelete";
 		if(confirm("Are you sure you want to delete this assign?")) {
 			$.ajax({
-				url: APP_BASE_URL + "e/AssignAction.php",
+				url: APP_BASE_URL + "/assign/delete",
 				method:"POST",
 				data:{assignedId:assignedId, action:action},
 				success:function(data) {					
@@ -102,11 +101,33 @@ $(document).ready(function(){
 			return false;
 		}
 	});	
+
+	  $("#assign_course").on('click', '.update_assigned_course', function(){
+		var assignedId = $("#assignedId").val();
+		var action = 'updateAssignedCourse';
+	    var data = $("form[name='assign_course']").serializeArray();
+		data.push({action: action});
+		 console.log(data);
+			  $.ajax({
+			    type: "POST",
+			    url: APP_BASE_URL + "/assign/update",
+			    data: data,
+			    success: function(response){
+			       // $('#assign_course')[0].reset();
+					$('#assignModal').modal('hide');	
+					assignData.ajax.reload();
+			    },
+			    error: function(){
+			        alert("error");
+			    }
+			  });
+	});
+
 });
 
 $(document).ready(function(){
  $.ajax({    
-        url:"http://localhost/sage/source/AssignAction.php",
+        url: APP_BASE_URL + "/assign/listAssignedCourse",
         type: 'POST',
         data:{action:'listStudentCourse'},
 		dataType:"json",
@@ -133,9 +154,8 @@ $(document).ready(function(){
         });
  $(document).on('click', '.assign_course', function(){
   $.ajax({    
-        url:"http://localhost/sage/source/AssignAction.php",
+        url: APP_BASE_URL + "/assign/listAssignedCourse",
         type: 'POST',
-        data:{action:'listStudentCourse'},
 		dataType:"json",
         success: function(data) {
         	var studentlistItems = '<option value="">Select Student</option>';
@@ -157,6 +177,7 @@ $(document).ready(function(){
   			$('#item_table').append(html);
         }
         });
+
  });
  
 
@@ -189,11 +210,11 @@ $(document).ready(function(){
 
 	    var data = form_data;
 	    console.log(form_data)
-		url: "http://localhost/sage/source/AssignAction.php"
+		url: APP_BASE_URL + "/assign/assignCourse",
 	    data.push({action: 'assignCourse'});
 		  $.ajax({
 		    type: "POST",
-		    url: "http://localhost/sage/source/AssignAction.php",
+		    url: APP_BASE_URL + "/assign/create",
 		    data: data,
 		    success: function(response){
 		        $('#assign_course')[0].reset();
@@ -211,25 +232,6 @@ $(document).ready(function(){
 	  }
  });
  
- $("#assign_course").on('click', '.update_assigned_course', function(){
-		var assignedId = $("#assignedId").val();
-		var action = 'updateAssignedCourse';
-	    var data = $("form[name='assign_course']").serializeArray();
-		data.push({action: action});
-		 console.log(data);
-			  $.ajax({
-			    type: "POST",
-			    url: APP_BASE_URL + "e/AssignAction.php",
-			    data: data,
-			    success: function(response){
-			       // $('#assign_course')[0].reset();
-					$('#assignModal').modal('hide');	
-					assignData.ajax.reload();
-			    },
-			    error: function(){
-			        alert("error");
-			    }
-			  });
-	});
+ 
 
 });

@@ -1,0 +1,46 @@
+CREATE DATABASE sage;
+
+CREATE TABLE `sage`.`students`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(20) NOT NULL,
+    `last_name` VARCHAR(20) NOT NULL,
+    PRIMARY KEY(`id`)
+) ENGINE = INNODB; 
+
+CREATE TABLE `sage`.`students_details`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `student_id` INT NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `contact_number` VARCHAR(15) NOT NULL,
+    `date_of_birth` DATETIME NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`)
+) ENGINE = INNODB; 
+
+ALTER TABLE
+    `students_details` ADD FOREIGN KEY(`student_id`) REFERENCES `students`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	
+CREATE TABLE `sage`.`course`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `details` MEDIUMTEXT NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`)
+) ENGINE = INNODB; 
+
+CREATE TABLE `sage`.`assigned_courses`(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `student_id` INT NOT NULL,
+    `course_id` INT NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(`id`)
+) ENGINE = INNODB; 
+
+ALTER TABLE
+    `assigned_courses` ADD FOREIGN KEY(`course_id`) REFERENCES `course`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+	
+ALTER TABLE
+    `assigned_courses` ADD FOREIGN KEY(`student_id`) REFERENCES `students`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

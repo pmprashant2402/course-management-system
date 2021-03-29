@@ -6,7 +6,7 @@ $(document).ready(function(){
 		"serverSide":true,
 		"order":[],
 		"ajax":{
-			url:"http://localhost/sage/source/CourseController.php",
+			url: APP_BASE_URL + "/course/list",
 			type:"POST",
 			data:{action:'listCourse'},
 			dataType:"json"
@@ -57,7 +57,7 @@ $(document).ready(function(){
 		    },
 		    submitHandler: function(form) {
 		      var data = $("form[name='create_course']").serializeArray();
-		      url: "http://localhost/sage/source/CourseController.php"
+		      url: APP_BASE_URL + "/course/add",
 			  data.push({action: 'addCourse'});
 				  $.ajax({
 				    type: "POST",
@@ -79,7 +79,7 @@ $(document).ready(function(){
 		var courseId = $(this).attr("id");
 		var action = 'getCoursee';
 		$.ajax({
-			url: APP_BASE_URL + "e/CourseController.php",
+			url: APP_BASE_URL + "/course/getcourseData",
 			method:"POST",
 			data:{courseId:courseId, action:action},
 			dataType:"json",
@@ -103,7 +103,7 @@ $(document).ready(function(){
 		var action = "deleteCourse";
 		if(confirm("Are you sure you want to delete this course?")) {
 			$.ajax({
-				url: APP_BASE_URL + "e/CourseController.php",
+				url: APP_BASE_URL + "/course/delete",
 				method:"POST",
 				data:{courseId:courseId, action:action},
 				success:function(data) {					
@@ -122,7 +122,7 @@ $(document).ready(function(){
 		 console.log(data);
 			  $.ajax({
 			    type: "POST",
-			    url: APP_BASE_URL + "e/CourseController.php",
+			    url: APP_BASE_URL + "/course/update",
 			    data: data,
 			    success: function(response){
 			        $('#create_course')[0].reset();

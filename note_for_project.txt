@@ -1,2 +1,0 @@
-Note Currently the routing is not implemented. 
-Please run the project by running http://localhost/sage/source/student/student_details.php
