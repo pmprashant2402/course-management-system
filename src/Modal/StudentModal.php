@@ -60,25 +60,25 @@ class StudentModal extends DbConfig
 	        $totalRecords = mysqli_query($conn, $totalQuery);
 	        $numRows = mysqli_num_rows($totalRecords);
 	        $i = 1;
-	        $employeeData = array();    
-	        while( $employee = mysqli_fetch_assoc($result) ) {  
-	            $empRows = array();         
-	            $empRows[] = $i;
-	            $empRows[] = ucfirst($employee['first_name']);
-	            $empRows[] = $employee['last_name'];        
-	            $empRows[] = $employee['email'];    
-	            $empRows[] = $employee['contact_number'];
-	            $empRows[] = $employee['date_of_birth'];                    
-	            $empRows[] = '<button type="button" name="update" id="'.$employee["id"].'" class="btn btn-warning btn-xs update">Update</button>';
-	            $empRows[] = '<button type="button" name="delete" id="'.$employee["id"].'" class="btn btn-danger btn-xs delete" >Delete</button>';
-	            $employeeData[] = $empRows;
+	        $studentData = array();    
+	        while( $student = mysqli_fetch_assoc($result) ) {  
+	            $studentRows = array();         
+	            $studentRows[] = $i;
+	            $studentRows[] = ucfirst($student['first_name']);
+	            $studentRows[] = $student['last_name'];        
+	            $studentRows[] = $student['email'];    
+	            $studentRows[] = $student['contact_number'];
+	            $studentRows[] = $student['date_of_birth'];                    
+	            $studentRows[] = '<button type="button" name="update" id="'.$student["id"].'" class="btn btn-warning btn-xs update">Update</button>';
+	            $studentRows[] = '<button type="button" name="delete" id="'.$student["id"].'" class="btn btn-danger btn-xs delete" >Delete</button>';
+	            $studentData[] = $studentRows;
 	            $i++;
 	        }
 	        $output = array(
 	            "draw"              =>  intval($data["draw"]),
 	            "recordsTotal"      =>  $numRows,
 	            "recordsFiltered"   =>  $numRows,
-	            "data"              =>  $employeeData
+	            "data"              =>  $studentData
 	        );
 	        return $output;
 		} catch (Exception $e) {
